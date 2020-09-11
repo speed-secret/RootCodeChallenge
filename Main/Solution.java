@@ -56,7 +56,7 @@ public class Solution {
             driverMap.put(curDriver.getName(), curDriver);
         }
         //At that time we already processed all the lists of Strings, we will round each
-        //total distance of every driver and round each average speed into integer value and
+        //total distance of every driver and round each average speed into an integer value and
         //use a list to store all sorted entries;
         List<String> result = getAllResult(driverMap);
         while (result.iterator().hasNext()) {
