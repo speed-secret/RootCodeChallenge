@@ -1,8 +1,13 @@
 # RootCodeChallenge
 Conquer The Interesting Challenge!
 
-In this file, I explanined the thinking process of using OOD mindset from High level to details,
-At the end, I went through a work sample case to prove the correctness of my logic and my solution to this question.
+In this file, there are two parts:
+For the first part, I explain the thinking process of using the OOD mindset from High level to details,
+For the second part, I went through a work sample case to prove the correctness of my logic and my solution(in each step) to this question.
+
+************************************
+Part One
+************************************
 
 Clarify:
 Firstly, the file can be fit in the memory;
@@ -31,21 +36,21 @@ as well as two methods:
 2. calculate the curAverageSpeed;
 
 For the input:
-There are mainly two cases in terms of the first element of each list of string
+There are mainly two cases in terms of the first element of each list of string:
 
-the first case is that the first string in the list is “Driver” which indicates the name of participant driver
+The first case is that the first string in the list is “Driver” which indicates the name of participant driver
+The second case is the that the first string in the list is”Trip” which reflect the status of each trip including distance, cost of time, and speed(we can figure it out later);
 
-the second case is the that the first string in the list is”Trip” which reflect the status of each trip including distance, cost of time, and speed(we can figure it out later);
-
-the purpose of this project is to focus on calculating the average speed of each Drivers.
-
+The purpose of this project is to focus on calculating the average speed of each Drivers.
 Hence, I use a hashMap to store each driver’s name as the keys and each Driver(which take 4 fields)class as values;
 for the Driver’s name stuff, we just initialize the hashMap,
 then when we process each trip, we shall calculate each trip’s speed and distance and update the corresponding Driver class in the hashMap;
 
 After we processed all the input, we shall scan every entry in the current hashMap and sort all the driver’s status (in this example, sort the Drivers’ distance by High to low)
 
-
+************************************
+Part Two
+************************************
 Note: here is the example by using my logic:
 input:
 {“Driver”, “Dan”}
@@ -81,16 +86,16 @@ Step3:
 Process all list of Strings(input)
 driveMap: <Dan, (Dan) Driver>
           <Lauren, (Lauren)Driver>
-		      <Kumi, (Kumi)Driver>
+	  <Kumi, (Kumi)Driver>
 
 case1: Driver name only -> initialize driverMap with all new drivers name;
 case2: Process Trip status and update corresponding Driver’s field in the map
 {“Trip”, “ Dan”, “ 07:15”, “ 07:45”, “17.3”}
 update: driverMap<Dan, (Dan) Driver>
- 			  		          name: Dan
-				              sumOfDistance: 17.3 miles
-					            aveSpeed: 34.6mph
-				              preTime: 0.5h
+		      name: Dan
+		      sumOfDistance: 17.3 miles
+		      aveSpeed: 34.6mph
+		      preTime: 0.5h
                       
 {“Trip”, “ Dan”, “ 06:12”, “ 06:32”, “21.8”}
 update: driverMap<Dan, (Dan)Driver>
@@ -127,7 +132,8 @@ driverMap<Kumi, (Kumi)Driver>
                  preTime: 0h
 
 Step5:
-Print out the result:
+OutPut (Print out the result)
+
 Lauren: 42 miles @ 34 mph
 Dan: 39 miles @ 47 mph
 Kumi: 0 miles
