@@ -3,8 +3,8 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.*;
-public class Trip {
-    /*
+
+/*
 Input:
 Driver Dan
 Driver Lauren
@@ -17,12 +17,14 @@ Output:
 Lauren: 42 miles @ 34 mph
 Dan: 39 miles @ 47 mph
 Kumi: 0 miles
+*/
 
-     */
+public class Trip {
     //for each trip:
-    //it must has a name, startTime end time, and average speed;
+    //it must has a name, startTime and endTime, and the average speed;
     private double distance;
-    private int[] time;//通过计算得出来的
+    //the int[] time take four parameters: startTime in Hour, startTime in Mins, endTime in Hour, endTime in Mins
+    private int[] time;
     public void setDistance(double distance) {
         this.distance = distance;
     }
@@ -39,10 +41,8 @@ Kumi: 0 miles
         this.time = time;
         this.distance = distance;
     }
-
-    //当我们读到trip的时候，那就是要计算出当前的速度和平均速度
-    //需要的值是距离（distance，时间差）
-    //overload to calculate time
+    //Write a function which utilize the Calendar class to parse the string "time" into following parameters
+    //double "time" in hours which served for the future calculation of average speed;
     public double getTime (String str1, String str2) throws ParseException {
         double curTime;
         SimpleDateFormat start = new SimpleDateFormat("HH:mm");
@@ -66,46 +66,4 @@ Kumi: 0 miles
         //According to the constraints, we would discard the data which is out of the boundary;
         return speed >= 5 && speed <= 100 ? speed : 0;
     }
-    /*
-    public static void main(String[] args) throws ParseException {
-        List<Double> eachTimePeriod = new ArrayList<>();
-        List<Integer> eachSpeed = new ArrayList<>();
-        //for each one trip in the whole list of trip;
-        String startTime = "18:30";
-        String endTime = "20:35";
-        SimpleDateFormat start = new SimpleDateFormat("hh:mm");
-        SimpleDateFormat end = new SimpleDateFormat("hh:mm");
-        Date startT = start.parse(startTime);
-        Date endT = end.parse(endTime);
-        Calendar calOfStart = Calendar.getInstance();
-        Calendar calOfEnd = Calendar.getInstance();
-        //把被parse好的参数给cal赋值，然后再用Calendar的类去拿小时和分钟；
-        calOfStart.setTime(startT);
-        calOfEnd.setTime(endT);
-        int cosOfTime = (calOfEnd.get(Calendar.HOUR_OF_DAY) - calOfStart.get(Calendar.HOUR_OF_DAY)) * 60 +
-                         calOfEnd.get(Calendar.MINUTE) - calOfStart.get(Calendar.MINUTE);
-        double timeInHour = (cosOfTime + 0.0) / 60;
-        int distance = 20;
-        int speed = (int) (distance / timeInHour);
-        if (speed > 5 && speed < 100) {
-            //add it into
-            //eligible speed;
-            eachTimePeriod.add(timeInHour);
-            eachSpeed.add(speed);
-        }
-        //then calculate the average speed of the specific in a certain driver
-        //and put the result into the report class
-        //and save it later;
-        /*
-        try {
-            Date dt = sdf.parse("90");
-            sdf = new SimpleDateFormat("HH:mm");
-            System.out.println(sdf.format(dt));
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
-        System.out.println(format);
-    }
-        */
 }
-
