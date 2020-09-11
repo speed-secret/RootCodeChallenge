@@ -1,21 +1,22 @@
 package RootCodeChallengeSolution;
 
+import java.io.BufferedReader;
+import java.io.FileReader;
 import java.text.ParseException;
 import java.util.*;
 
 /*
 High LEVEL:
-顶层设计是什么？
-1. DRIVER CLASS
+1. DRIVER Class
 2. Trip Class
 3. Solution Class
  */
 
 public class Solution {
     public static void main(String[] args) throws ParseException {
-        //detect each drivers behavior as well as each trips
-        //put each drivers as a new HashMap with key is : string
-        //and its value is :
+        //detect each drivers as well as each trip
+        //put each driver as a new HashMap with key is: String
+        //and its value is : Driver(class)
         /*
         StringTokenizer st;
         BufferedReader TSVFile = new BufferedReader(new FileReader(args[0]));
@@ -48,20 +49,15 @@ public class Solution {
         List<String> trip1 = Arrays.asList("Trip", "Dan", "07:15", "07:45", "17.3");
         List<String> trip2 = Arrays.asList("Trip", "Dan", "06:12", "06:32", "21.8");
         List<String> trip3 = Arrays.asList("Trip", "Lauren", "12:01", "13:16", "42.0");
-        /*
-        List<String> trip1 = Arrays.asList("Trip", "Linda", "17:50", "17:55", "3.0");
-        List<String> trip2 = Arrays.asList("Trip", "Linda", "18:50", "19:50", "50.0");
-        List<String> trip3 = Arrays.asList("Trip", "Dan", "10:00", "11:00", "40.0");
-        List<String> trip4 = Arrays.asList("Trip", "Linda", "19:00", "21:00", "100.0");
-
-         */
         Map<String, Driver> driverMap = new HashMap<>();
         List<List<String>> res = Arrays.asList(driver1, driver2, driver3, trip1, trip2, trip3);
         for (List<String> str : res) {
             Driver curDriver = getCurDriverStatus(str, driverMap);
             driverMap.put(curDriver.getName(), curDriver);
         }
-        //*************全部做完以后再扫一遍所有entry 然后用iterator()一行一行读************
+        //At that time we already processed all the lists of Strings, we will round each
+        //total distance of every driver and round each average speed into integer value and
+        //use a list to store all sorted entries;
         List<String> result = getAllResult(driverMap);
         while (result.iterator().hasNext()) {
             System.out.println(result.iterator().next());
@@ -92,7 +88,7 @@ public class Solution {
         double preTime = driverMap.get(owner).getPreTime();
         double sumOfDistance = driverMap.get(owner).getSumOfDistance() + distance;
         curSpeed = curSpeed * curTime / (preTime + curTime) + preSpeed * preTime / (preTime + curTime);
-        //creat a new Driver and return the new Driver;
+        //creat a new Driver with updated speed and distance
         Driver newDriver = new Driver(owner, sumOfDistance, curSpeed, preTime + curTime);
         return newDriver;
     }
